@@ -1,0 +1,31 @@
+{
+  "name": "imf-gadget-api-development-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishimwejeanluc/IMF-Gadget-API-Development-Challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ishimwejeanluc/IMF-Gadget-API-Development-Challenge/issues"
+  },
+  "homepage": "https://github.com/ishimwejeanluc/IMF-Gadget-API-Development-Challenge#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5",
+    "uuid": "^11.1.0"
+  }
+}
