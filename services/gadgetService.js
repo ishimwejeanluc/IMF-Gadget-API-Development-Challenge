@@ -1,30 +1,45 @@
 // services/gadgetService.js
 const Gadget = require('../models/Gadget');
-const { Op } = require('sequelize');
+const { fn, col , literal} = require('sequelize');
+
+// Array of possible codenames
+const codenames = [
+    "The Nightingale",
+    "The Kraken",
+    "The Phoenix",
+    "The Chimera",
+    "The Leviathan",
+    "The Spectre",
+    "The Griffin",
+    "The Manticore",
+    "The Hydra",
+    "The Cerberus"
+];
 
 class GadgetService {
-    // Get all gadgets, with optional status filter
+    
     async getAllGadgets(status) {
         const where = status ? { status } : {};
-        return await Gadget.findAll({
+        const gadgets = await Gadget.findAll({
             where,
             attributes: {
                 include: [
-                    [
-                        Math.floor(Math.random() * 100) + 1, // Random success probability
-                        'missionSuccessProbability'
-                    ],
+                    // Generate a random success probability between 50 and 100
+                    [literal('FLOOR(RANDOM() * 50 + 50)'), 'missionSuccessProbability'], // PostgreSQL
                 ],
             },
         });
+        return gadgets;
     }
 
     // Create a new gadget
-    async createGadget(name, missionSuccessProbability) {
+    async createGadget() {
+        // Generate a random codename from the array
+        const codename = codenames[Math.floor(Math.random() * codenames.length)];
+
         return await Gadget.create({
-            name,
-            missionSuccessProbability,
-            status: 'Available',
+            name: codename, // Use the codename as the name
+            status: 'Available', // Default status
         });
     }
 

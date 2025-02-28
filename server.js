@@ -13,6 +13,6 @@ app.use('/auth', authRoutes);
 app.use('/gadgets', authenticateToken, gadgetRoutes);
 
 app.listen(3000, async () => {
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log('Server running on port 3000');
 });

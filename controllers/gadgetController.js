@@ -15,8 +15,8 @@ class GadgetController {
     // POST /gadgets
     async createGadget(req, res) {
         try {
-            const { name, missionSuccessProbability } = req.body;
-            const gadget = await GadgetService.createGadget(name, missionSuccessProbability);
+            
+            const gadget = await GadgetService.createGadget();
             res.status(201).json(gadget);
         } catch (error) {
             res.status(500).json({ message: error.message });

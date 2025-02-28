@@ -17,10 +17,7 @@ const Gadget = sequelize.define('Gadget', {
         type: DataTypes.ENUM('Available', 'Deployed', 'Destroyed', 'Decommissioned'),
         defaultValue: 'Available',
     },
-    missionSuccessProbability: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
+    
     decommissionedAt: {
         type: DataTypes.DATE,
     },
