@@ -5,6 +5,7 @@ const GadgetController = require('../controllers/gadgetController');
 
 // Define routes and map to controller methods
 router.get('/', GadgetController.getAllGadgets);
+router.get('/status', GadgetController.getGadgetsByStatus);
 router.post('/', GadgetController.createGadget);
 router.patch('/:id', GadgetController.updateGadget);
 router.delete('/:id', GadgetController.decommissionGadget);

@@ -18,10 +18,8 @@ const codenames = [
 
 class GadgetService {
     
-    async getAllGadgets(status) {
-        const where = status ? { status } : {};
+    async getAllGadgets() {
         const gadgets = await Gadget.findAll({
-            where,
             attributes: {
                 include: [
                     // Generate a random success probability between 50 and 100
@@ -29,7 +27,29 @@ class GadgetService {
                 ],
             },
         });
-        return gadgets;
+
+        // Map the gadgets to include the success probability in the response
+        return gadgets.map(gadget => ({
+            id: gadget.id,
+            name: gadget.name,
+            status: gadget.status,
+            missionSuccessProbability: gadget.getDataValue('missionSuccessProbability') + '%', // Append '%' to the probability
+        }));
+    }
+
+    async getGadgetsByStatus(status) {
+        const where = { status }; // Filter by status
+        const gadgets = await Gadget.findAll({
+            where,
+            attributes: ['id', 'name', 'status'], // Only include id, name, and status
+        });
+
+        // Map the gadgets to include only the required fields in the response
+        return gadgets.map(gadget => ({
+            id: gadget.id,
+            name: gadget.name,
+            status: gadget.status,
+        }));
     }
 
     // Create a new gadget
